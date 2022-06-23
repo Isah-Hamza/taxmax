@@ -1,4 +1,9 @@
+:root{
+  --primary-clr:"#E9E9E9";
+  --bg:"#192537";
+}
 body {
+  background-color: var(--bg) !important;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +15,24 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.login form{
+  width: 400px;
+}
+.login input{
+  padding-block: 8px !important;
+}
+
+@media screen and (max-width:768px) {
+  .login > div:last-of-type{
+    width: 100% !important;
+  }
+
+  }
+
+@media screen and (max-width:400px) {
+  .login form{ width: 100%}
+  .login input{
+    width: 100%;
+  }
 }
