@@ -23,6 +23,19 @@ code {
   padding-block: 8px !important;
 }
 
+/* dashboard */
+.dashboard aside li:hover{
+  background-color: rgb(225, 239, 243) ;
+  /* background-color: rgb(238, 243, 245) ; */
+  
+}
+.dashboard aside li.active{
+  /* background-color: var(--bg) !important ; */
+  background-color: #2d3642 !important ;
+  color:white;
+  font-weight: 500;
+}
+
 @media screen and (max-width:768px) {
   .login > div:last-of-type{
     width: 100% !important;

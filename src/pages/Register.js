@@ -1,10 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Row, Col } from "react-bootstrap";
 import logoImg from "../images/logo-blue.jpeg";
 
 const Register = () => {
   const bgColor = "#192537";
+  const navigate = useNavigate();
+
+  const handleSignUp = () => {
+    navigate("/login");
+  };
   return (
     <div
       className="login d-flex"
@@ -126,6 +131,7 @@ const Register = () => {
               </label>
             </div>
             <Button
+              onClick={handleSignUp}
               style={{ height: "45px" }}
               className="my-3 outline-none border-0"
             >

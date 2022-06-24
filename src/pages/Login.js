@@ -2,9 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import logoImg from "../images/logo-blue.jpeg";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const bgColor = "#192537";
+  const navigate = useNavigate();
+
+  const handleSignIn = () => {
+    navigate("/dashboard");
+  };
   return (
     <div
       className="login d-flex"
@@ -77,6 +83,7 @@ const Login = () => {
               <input type="Password" className="form-control " required />
             </div>
             <Button
+              onClick={handleSignIn}
               style={{ height: "45px" }}
               className="mt-3 outline-none border-0"
             >
