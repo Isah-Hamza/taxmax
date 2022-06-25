@@ -11,6 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.error{ font-size: 11px; color: coral; margin-top: 2px;}
 .hideDesktop{ display: none;}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

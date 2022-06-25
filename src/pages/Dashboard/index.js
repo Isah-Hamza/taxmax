@@ -43,7 +43,7 @@ const Dashbaord = () => {
         <p className="lead fw-bold pb-2">Dashboard</p>
         <Row xs={1} sm={2} lg={4} className="g-4 d-flex w-100">
           {dashboardCardItems.map((item, idx) => (
-            <DashboardCard {...item} />
+            <DashboardCard key={idx} {...item} />
           ))}
         </Row>
         <div

@@ -1,16 +1,44 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import logoImg from "../images/logo-blue.jpeg";
 import { useNavigate } from "react-router-dom";
+import { UsersContext } from "../App";
 
 const Login = () => {
+  const location = useLocation();
+  const { users, setUsers } = useContext(UsersContext);
+  const [email, setEmail] = useState(() => {
+    const email = location.state?.email;
+    return email ? email : "";
+  });
+  const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [showError, setShowError] = useState("");
+
   const bgColor = "#192537";
   const navigate = useNavigate();
 
   const handleSignIn = () => {
-    navigate("/dashboard");
+    // console.log(email, password);
+    const user = users.find((item) => item.email == email);
+    if (!user) {
+      setShowError(true);
+      setLoginError("No such user found!");
+      console.log(loginError);
+      return;
+    }
+    if (user.password !== password) {
+      setShowError(true);
+      setLoginError("Incorrect password!");
+      console.log(loginError);
+      return;
+    }
+    setShowError(false);
+    setLoginError("");
+    navigate("/dashboard", { state: { user } });
   };
+
   return (
     <div
       className="login d-flex"
@@ -56,6 +84,9 @@ const Login = () => {
           >
             Sign in to <span>TaxMacs</span>
           </p>
+          <p className="text-danger">
+            {showError && loginError && `${loginError}`}
+          </p>
           <div className="d-flex gap-4 gap-sm-3 flex-column mt-4">
             <div className="d-flex flex-column">
               <label
@@ -65,7 +96,13 @@ const Login = () => {
               >
                 Email Address
               </label>
-              <input type="email" className="form-control " required />
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                className="form-control "
+                required
+              />
             </div>
             <div className="d-flex flex-column">
               <div className="d-flex justify-content-between align-items-center">
@@ -80,7 +117,13 @@ const Login = () => {
                   Forgot Password?
                 </Link>
               </div>
-              <input type="Password" className="form-control " required />
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type="Password"
+                className="form-control "
+                required
+              />
             </div>
             <Button
               onClick={handleSignIn}
