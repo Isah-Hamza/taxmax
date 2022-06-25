@@ -1,136 +1,79 @@
-import React, { useState, useRef } from "react";
-import user from "../../images/Isah Hamza.jpg";
-import { BsGridFill, BsBagFill, BsFillChatRightDotsFill } from "react-icons/bs";
-import { FaUserAlt, FaCommentDollar } from "react-icons/fa";
-import { BsSearch } from "react-icons/bs";
-import { MdNotificationsActive } from "react-icons/md";
+// https://dribbble.com/shots/17313206/attachments/12428051?mode=media
+import { FaUserAlt, FaCommentDollar, FaUsers } from "react-icons/fa";
+import { BsHandbagFill, BsCartCheckFill } from "react-icons/bs";
+import { TiEye } from "react-icons/ti";
+import { Row } from "react-bootstrap";
+
+import DashboardCard from "../../components/DashboardCard";
+import DashbaordTable from "../../components/DashbaordTable";
+import DashboardChart from "../../components/DashboardChart";
+import DashboardLayout from "../../layout/DashboardLayout";
 
 const Dashbaord = () => {
-  const [activeSidebarLink, setActiveSidebarLink] = useState("Dashboard");
-  const sideBarList = [
+  const dashboardCardItems = [
     {
-      title: "Dashboard",
-      icon: <BsGridFill />,
+      icon: <TiEye color="#83bcbd" size={25} />,
+      bodyTitle: "Total Views",
+      bodyValue: "308,402",
+      footer: "Start from 1 Jan, 2021",
     },
     {
-      title: "Profile",
-      icon: <FaUserAlt />,
+      icon: <BsHandbagFill color="green" size={25} />,
+      bodyTitle: "Total Products",
+      bodyValue: "10,802",
+      footer: "+ Add new product",
     },
     {
-      title: "Portfolio",
-      icon: <BsBagFill />,
+      icon: <FaUsers color="skyblue" size={25} />,
+      bodyTitle: "Total Users",
+      bodyValue: "8,425",
+      footer: "New users noted every week",
     },
     {
-      title: "Messages",
-      icon: <BsFillChatRightDotsFill />,
-    },
-    {
-      title: "Wallet",
-      icon: <FaCommentDollar />,
+      icon: <BsCartCheckFill color="tomato" size={25} />,
+      bodyTitle: "Total Sells",
+      bodyValue: "10,208,024",
+      footer: "Start from 1 Jan, 2021",
     },
   ];
-  const handleChangeActiveTab = (tabTitle) => {
-    setActiveSidebarLink(tabTitle);
-  };
-
-  const searchInputRef = useRef();
 
   return (
-    <div className="dashboard d-flex bg-light">
-      <aside
-        className="shadow pt-3"
-        style={{
-          width: "20%",
-          height: "100vh",
-          overflowY: "auto",
-        }}
-      >
-        <div style={{ paddingBottom: "55px" }}>
-          <p className="lead fw-bold mb-0 text-center">Welcome to TaxMacs</p>
-        </div>
-        <div
-          className="w-100 d-flex flex-column justify-content-center align-items-center w-50 mx-auto"
-          style={{}}
-        >
-          <img
-            src={user}
-            alt="user image"
-            className="rounded-circle"
-            style={{ maxWidth: "120px", aspectRatio: "1/1" }}
-          />
-          <div className="position-relative mt-2 d-flex flex-column fw-bold gap-0 text-center">
-            <div
-              className="position-absolute bg-success rounded-circle end-0 "
-              style={{ width: "6px", height: "6px", top: "17%" }}
-            ></div>
-            <p className="mb-0">Isah Hamza</p>
-            <p
-              className="fw-normal"
-              style={{ marginTop: "-5px", fontSize: "14px" }}
-            >
-              Software Developer
-            </p>
-          </div>
-        </div>
-        <div className="d-flex flex-column mt-4">
-          {sideBarList.map((item, idx) => (
-            <li
-              onClick={() => handleChangeActiveTab(item.title)}
-              style={{ paddingLeft: "60px", cursor: "pointer" }}
-              className={`${
-                activeSidebarLink == item.title && "active"
-              } border-bottom d-flex gap-3 py-3`}
-              key={idx}
-            >
-              <span>{item.icon}</span>
-              <span>{item.title}</span>
-            </li>
+    <DashboardLayout>
+      <>
+        <p className="lead fw-bold pb-2">Dashboard</p>
+        <Row xs={1} sm={2} lg={4} className="g-4 d-flex w-100">
+          {dashboardCardItems.map((item, idx) => (
+            <DashboardCard {...item} />
           ))}
-        </div>
-      </aside>
-      <main
-        className=""
-        style={{
-          //   background: "#213a82",
-          width: "80%",
-          height: "100vh",
-          msOverflowY: "auto",
-        }}
-      >
+        </Row>
         <div
-          className="shadow-sm d-flex align-items-center justify-content-between px-4"
-          style={{ height: "60px" }}
+          className="tablechart me-4 me-lg-0 d-flex flex-column flex-md-row mb-3 gap-4 "
+          style={{ marginTop: "40px" }}
         >
-          <div className="position-relative">
-            <input
-              ref={searchInputRef}
-              style={{ outline: "none", paddingLeft: "28px" }}
-              className="border-0 outline-0 bg-transparent"
-              type="search"
-              id="search"
-              placeholder="Search anything here..."
-            />
-            <label
-              onClick={() => searchInputRef.current.click()}
-              htmlFor="search"
-              className="position-absolute start-0"
-            >
-              <span className=" " style={{}}>
-                <BsSearch size={20} />
-              </span>
-            </label>
-          </div>
-          <div className="position-relative d-flex gap-3">
-            <span style={{ cursor: "pointer" }}>
-              <MdNotificationsActive size={24} />
-            </span>
-            <span style={{ cursor: "pointer" }}>
-              <BsFillChatRightDotsFill size={18} />
-            </span>
+          <DashbaordTable />
+          <div
+            className="d-flex flex-column h-100 p-3"
+            style={{ background: "white", width: "35%" }}
+          >
+            <div className="d-flex justify-content-between align-items-center">
+              <p className="mb-0" style={{ fontWeight: "500" }}>
+                Lorem and Ipsum
+              </p>
+              <select className="opacity-50 outline-0 border-0">
+                <option selected value="this_week">
+                  This week
+                </option>
+                <option value="this_month">This month</option>
+                <option value="this_year">This year</option>
+              </select>
+            </div>
+            <div className="mt-auto">
+              <DashboardChart />
+            </div>
           </div>
         </div>
-      </main>
-    </div>
+      </>
+    </DashboardLayout>
   );
 };
 
