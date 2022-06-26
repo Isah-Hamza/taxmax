@@ -24,6 +24,8 @@ const Register = () => {
       confirm_password: "",
     },
     onSubmit: (values) => {
+      values.current_balance = 0;
+      values.traffic_light = "red";
       setUsers((prev) => [values, ...prev]);
       navigate("/login", { state: { email: values.email } });
       alert(values.username);

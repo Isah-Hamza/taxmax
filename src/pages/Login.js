@@ -7,7 +7,7 @@ import { UsersContext } from "../App";
 
 const Login = () => {
   const location = useLocation();
-  const { users, setUsers } = useContext(UsersContext);
+  const { users, setUsers, setLoggedInUser } = useContext(UsersContext);
   const [email, setEmail] = useState(() => {
     const email = location.state?.email;
     return email ? email : "";
@@ -36,6 +36,7 @@ const Login = () => {
     }
     setShowError(false);
     setLoginError("");
+    setLoggedInUser(user);
     navigate("/dashboard", { state: { user } });
   };
 

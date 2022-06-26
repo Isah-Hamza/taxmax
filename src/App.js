@@ -18,13 +18,14 @@ function App() {
       return [];
     }
   });
+  const [loggedInUser, setLoggedInUser] = useState({});
   useEffect(() => {
     localStorage.setItem("users", JSON.stringify(users));
   }, [users]);
 
   console.log(users);
 
-  const value = { users, setUsers };
+  const value = { users, setUsers, loggedInUser, setLoggedInUser };
   return (
     <UsersContext.Provider value={value}>
       <div className="App">
